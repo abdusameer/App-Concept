@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stagger App — Concept &amp; Roadmap</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@500;600&family=Inter:wght@400;500&display=swap">
+<style>
+:root{--milk:#F3EFE7;--oat:#E7DFD0;--bone:#D8CFBF;--ink:#1C1B18;--ink2:#5E584E;--line:rgba(28,27,24,.14);--night:#0E0F0C;--matcha:#9EC23F;--deep:#4B661A;
+  --d:"Inter Tight","Helvetica Neue",Arial,sans-serif;--b:"Inter","Helvetica Neue",Arial,sans-serif;--s:"Instrument Serif",Georgia,serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--milk);color:var(--ink);font:400 16px/1.55 var(--b);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+h1,h2,h3,p,ul,ol{margin:0}ul,ol{padding:0;list-style:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.lab{font:500 11px/1.3 var(--b);letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+.serif{font-family:var(--s);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.disp{font-family:var(--d);font-weight:600;letter-spacing:-.045em;line-height:.92}
+section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line)}
+header.top{padding:clamp(56px,8vw,110px) 0 clamp(40px,6vw,80px)}
+header.top h1{font-size:clamp(46px,8vw,120px);margin:18px 0 22px}
+header.top p{max-width:56ch;font-size:clamp(17px,1.5vw,21px);color:var(--ink2)}
+.badge{display:inline-flex;gap:8px;align-items:center;margin-top:26px;padding:8px 14px;border:1px solid var(--line);border-radius:99px;font:500 12px/1 var(--b);color:var(--ink2)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--matcha)}
+h2.disp{font-size:clamp(34px,5vw,72px);margin:14px 0 18px}
+.lead{max-width:60ch;color:var(--ink2);font-size:clamp(16px,1.3vw,19px)}
+
+/* scope */
+.scope{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:40px}
+.scope div{padding:24px;background:var(--oat)}
+.scope h3{font:600 20px/1.2 var(--d);letter-spacing:-.02em;margin-bottom:12px}
+.scope li{padding:7px 0;border-bottom:1px solid var(--line);font-size:15px}
+.scope li:last-child{border:0}
+.scope .no{background:transparent;border:1px dashed var(--line)}
+.scope .no li{color:var(--ink2)}
+
+/* phones */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:56px 28px;margin-top:56px;justify-items:center}
+figure.fx{margin:0;display:grid;gap:18px;justify-items:center;width:100%;max-width:340px}
+figcaption{max-width:32ch;text-align:center;font-size:14px;color:var(--ink2)}
+figcaption b{display:block;font:600 17px/1.2 var(--d);letter-spacing:-.02em;color:var(--ink);margin-bottom:4px}
+.phone{width:100%;height:690px;border-radius:44px;background:#151512;padding:9px;box-shadow:0 30px 60px -28px rgba(28,27,24,.45)}
+.scr{position:relative;height:100%;border-radius:36px;background:var(--milk);overflow:hidden;display:flex;flex-direction:column}
+.scr.oat{background:var(--oat)}.scr.dark{background:var(--night);color:#EDE8DC}
+.sb{display:flex;justify-content:space-between;padding:14px 26px 4px;font:600 12px/1 var(--b)}
+.ab{display:flex;justify-content:space-between;align-items:center;padding:8px 20px 10px}
+.ab img{width:92px}.dark .ab img{filter:invert(1) brightness(1.1)}
+.pts{display:inline-flex;gap:6px;align-items:center;padding:7px 11px;border-radius:99px;background:var(--ink);color:var(--milk);font:500 12px/1 var(--b)}
+.pts i{width:7px;height:7px;border-radius:50%;background:var(--matcha)}
+.dark .pts{background:#EDE8DC;color:var(--night)}
+.pg{flex:1;overflow:hidden;padding:4px 20px 14px;display:grid;gap:14px;align-content:start}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);padding:9px 6px 16px;background:rgba(243,239,231,.92)}
+.oat .tabs{background:rgba(231,223,208,.95)}.dark .tabs{background:#12130f;border-color:rgba(237,232,220,.14)}
+.tabs span{display:grid;justify-items:center;gap:4px;font:500 10px/1 var(--b);letter-spacing:.06em;color:var(--ink2)}
+.dark .tabs span{color:#A9A493}
+.tabs span svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.tabs .on{color:var(--ink)}.dark .tabs .on{color:var(--matcha)}
+.h{font:600 30px/.98 var(--d);letter-spacing:-.045em}.h .serif{font-size:1.08em}
+.card{background:#fff8;border:1px solid var(--line);border-radius:18px;padding:14px}
+.card.fill{background:var(--oat);border:0}
+.oat .card{background:#f3efe7aa}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sm{font-size:12.5px;color:var(--ink2)}.dark .sm{color:#A9A493}
+.strong{font:600 16px/1.2 var(--d);letter-spacing:-.02em}
+.tag{display:inline-block;padding:4px 9px;border-radius:99px;background:var(--matcha);color:#1f2c08;font:500 10px/1 var(--b);letter-spacing:.08em;text-transform:uppercase}
+.tag.o{background:transparent;border:1px solid var(--line);color:var(--ink2)}
+.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.meter i{height:8px;border-radius:4px;background:var(--bone)}
+.meter i.on{background:var(--matcha)}.meter i.on.hot{background:#d99a4c}
+.img{border-radius:16px;overflow:hidden;background:var(--bone)}
+.img img{width:100%;height:100%;object-fit:cover}
+.hero-c{position:relative;height:190px;border-radius:20px;overflow:hidden}
+.hero-c img{width:100%;height:100%;object-fit:cover}
+.hero-c::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,18,14,.72),rgba(20,18,14,0) 62%)}
+.hero-c div{position:absolute;left:14px;right:14px;bottom:12px;z-index:1;color:#F3EFE7}
+.hero-c b{display:block;font:600 22px/1 var(--d);letter-spacing:-.03em;margin:6px 0 2px}
+.strip{display:flex;gap:10px;overflow:hidden}
+.strip>div{flex:0 0 96px}.strip .img{aspect-ratio:3/4;margin-bottom:6px}
+.chips{display:flex;gap:7px;overflow:hidden}
+.chip{flex:none;padding:8px 13px;border:1px solid var(--line);border-radius:99px;font:500 12px/1 var(--b)}
+.chip.on{background:var(--ink);color:var(--milk);border-color:var(--ink)}
+.dark .chip{border-color:rgba(237,232,220,.22)}.dark .chip.on{background:var(--matcha);color:#10160a;border-color:var(--matcha)}
+.ev{display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center}
+.dt{display:grid;justify-items:center;padding:8px 0;border-radius:12px;background:var(--oat);font:600 20px/1 var(--d)}
+.dt small{font:500 9px/1 var(--b);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-bottom:3px}
+.oat .dt{background:var(--milk)}
+.btn{display:inline-flex;justify-content:center;align-items:center;min-height:42px;padding:0 18px;border-radius:99px;background:var(--ink);color:var(--milk);font:500 13px/1 var(--b)}
+.btn.ghost{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+.btn.m{background:var(--matcha);color:#10160a}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pc .img{aspect-ratio:4/5;margin-bottom:8px}
+.pc b{display:block;font:500 13px/1.25 var(--d);letter-spacing:-.01em}
+.pc span{font:400 italic 15px/1.3 var(--s);color:var(--ink2)}
+.dark .pc span{color:#C9C3B3}.dark .pc em{color:var(--matcha)}
+.pc em{display:block;font:500 10.5px/1.4 var(--b);font-style:normal;letter-spacing:.04em;color:var(--deep)}
+.big{font:600 58px/.9 var(--d);letter-spacing:-.05em}
+.bar{height:8px;border-radius:5px;background:var(--bone);overflow:hidden}.bar i{display:block;height:100%;background:var(--matcha)}
+.dark .bar{background:#2a2c24}
+.qr{display:grid;place-items:center;padding:14px;background:#fff;border-radius:16px}
+.qr svg{width:132px;height:132px}
+.hist li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.hist b{font-weight:500;color:var(--deep)}
+.dark .hist li{border-color:rgba(237,232,220,.12)}.dark .hist b{color:var(--matcha)}
+.bars{display:flex;align-items:flex-end;gap:5px;height:84px}.bars i{flex:1;border-radius:4px 4px 0 0;background:var(--bone)}.bars i.on{background:var(--matcha)}
+.mi{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.mi .img{aspect-ratio:1;background:transparent}.mi .img img{object-fit:contain}
+.mi b{display:block;font:600 15px/1.15 var(--d);letter-spacing:-.02em}
+.mi p{font-size:11.5px;line-height:1.35;color:var(--ink2)}
+.mi span{font:400 italic 17px/1 var(--s)}
+.spon{display:grid;place-items:center;height:56px;border:1px dashed rgba(28,27,24,.3);border-radius:12px;font:500 10px/1 var(--b);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.glass{position:relative;width:132px;height:150px;margin:8px auto 0;border:2px solid rgba(237,232,220,.5);border-top:0;border-radius:6px 6px 26px 26px;background:linear-gradient(#9EC23F55,#9EC23F99)}
+.glass i{position:absolute;width:52px;height:52px;border-radius:9px;background:rgba(237,232,220,.35);border:1px solid rgba(237,232,220,.55)}
+.gauge{position:relative;height:10px;border-radius:5px;background:linear-gradient(90deg,#d99a4c,#9EC23F 38%,#9EC23F 62%,#d99a4c)}.gauge i{position:absolute;top:-5px;width:4px;height:20px;border-radius:2px;background:#EDE8DC;left:56%}
+.note{position:absolute;right:14px;top:60px;z-index:3;transform:rotate(3deg);padding:5px 9px;border-radius:6px;background:var(--ink);color:var(--milk);font:500 9.5px/1 var(--b);letter-spacing:.1em;text-transform:uppercase}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:48px;counter-reset:ph}
+.ph{position:relative;padding:26px 24px 28px;background:var(--oat);border-top:3px solid var(--ink);counter-increment:ph}
+.ph:nth-child(2){border-color:var(--deep)}.ph:nth-child(3){border-color:var(--matcha)}.ph:nth-child(4){border-color:var(--bone)}
+.ph::before{content:"0" counter(ph);display:block;font:400 italic 36px/1 var(--s);color:var(--ink2);margin-bottom:14px}
+.ph h3{font:600 24px/1.05 var(--d);letter-spacing:-.035em;margin-bottom:6px}
+.ph .wk{font:500 11px/1.3 var(--b);letter-spacing:.14em;text-transform:uppercase;color:var(--deep);margin-bottom:16px}
+.ph li{padding:8px 0 8px 18px;position:relative;font-size:14.5px;border-top:1px solid var(--line)}
+.ph li::before{content:"";position:absolute;left:0;top:16px;width:7px;height:7px;border-radius:50%;background:var(--matcha)}
+.ph .out{margin-top:14px;padding-top:12px;border-top:1px solid var(--ink);font-size:13.5px;color:var(--ink2)}
+.ph .out b{color:var(--ink);font-weight:500}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:36px;margin-top:48px}
+.cols h3{font:600 22px/1.15 var(--d);letter-spacing:-.03em;margin-bottom:12px}
+.cols p,.cols li{font-size:15px;color:var(--ink2)}
+.cols li{padding:9px 0;border-top:1px solid var(--line)}
+.cols li b{color:var(--ink);font-weight:500}
+.ideas{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.ideas span{padding:10px 16px;border:1px solid var(--line);border-radius:99px;font-size:14px}
+footer{padding:48px 0 72px;border-top:1px solid var(--line);font-size:13px;color:var(--ink2)}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <p class="lab">Stagger Coffee — Concept &amp; work plan</p>
+  <h1 class="disp">The Stagger <span class="serif">app.</span></h1>
+  <p>One place for the café's day-to-day life: what's on, how busy it is, what to drink, what to buy, and points for being a regular. Below is what it would look like and how we'd build it in stages.</p>
+  <span class="badge"><i></i>Concept only — every event, article, number and partner shown is sample content</span>
+</div></header>
+
+<section><div class="wrap">
+  <p class="lab">01 — Scope</p>
+  <h2 class="disp">What's in, <span class="serif">what's not.</span></h2>
+  <p class="lead">A companion app, not an ordering app. Stagger stays a place you walk into, and tipping the team stays at the counter.</p>
+  <div class="scope">
+    <div><h3>In the app</h3><ul>
+      <li>Store hours &amp; live crowd meter with wait time</li><li>Events &amp; workshops, with reminders</li><li>Menu &amp; special drinks</li><li>Blog &amp; stories</li><li>Store: coffee, matcha, clothing, bags, objects</li><li>Points: earn at the café, spend in the store</li></ul></div>
+    <div><h3>Extras that keep people coming back</h3><ul>
+      <li>Small games that earn a few points a day</li><li>Community partners &amp; sponsors</li><li>Notifications for events &amp; drops</li><li>Shipping &amp; order tracking for store items</li></ul></div>
+    <div class="no"><h3>Not in this build</h3><ul>
+      <li>Pickup or drink ordering</li><li>Replacing the counter register</li><li>Table service</li></ul></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="lab">02 — How it looks</p>
+  <h2 class="disp">Eight <span class="serif">screens.</span></h2>
+  <p class="lead">Same cream, oat and matcha world as the website, with the dark matcha look for the store and games.</p>
+
+  <div class="gal">
+
+    <!-- HOME -->
+    <figure class="fx"><div class="phone"><div class="scr">
+      <div class="sb"><span>9:41</span><span>●●●</span></div>
+      <div class="ab"><img src="../stagger/images/brand/stagger-logo.png" alt="Stagger"><span class="pts"><i></i>1,240 pts</span></div>
+      <div class="pg">
+        <h3 class="h">Good morning. <span class="serif">Come by.</span></h3>
+        <div class="card"><div class="row"><div><p class="lab">Open now</p><p class="strong">Until 5pm today</p></div><span class="tag">Steady</span></div>
+          <div class="meter" style="margin:12px 0 8px"><i class="on"></i><i class="on"></i><i></i><i></i></div><p class="sm">About 5 min wait · updated 9:38</p></div>
+        <div class="hero-c" style="background:#DCE6B8"><img src="../stagger/images/drinks/signature-strawberry-matcha-734.webp" alt="" style="position:absolute;right:16px;top:8px;width:auto;height:96%;object-fit:contain"><div><span class="tag">Featured drink</span><b>Strawberry Matcha</b><span class="sm" style="color:#e7dfd0">$8.00</span></div></div>
+        <div class="card fill row"><div><p class="lab">Next event</p><p class="strong">Matcha whisking workshop</p><p class="sm">Sat · sample</p></div><span class="btn" style="min-height:36px;padding:0 14px">Remind</span></div>
+      </div>
+      <nav class="tabs"><span class="on"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg>Home</span><span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Events</span><span><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg>Shop</span><span><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/></svg>Play</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Rewards</span></nav>
+    </div></div><figcaption><b>Home</b>Hours, crowd level, the featured drink and what's coming up, all above the fold.</figcaption></figure>
+
+    <!-- CROWD -->
+    <figure class="fx"><div class="phone"><div class="scr">
+      <div class="sb"><span>9:41</span><span>●●●</span></div>
+      <div class="ab"><span class="strong">Right now</span><span class="pts"><i></i>1,240 pts</span></div>
+      <div class="pg">
+        <div class="card fill" style="padding:20px"><p class="lab">Crowd level</p><p class="big" style="margin:8px 0 4px">Steady</p><p class="strong">About 5 min wait</p>
+          <div class="meter" style="margin:16px 0 8px"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <div class="row sm"><span>Quiet</span><span>Steady</span><span>Busy</span><span>Packed</span></div></div>
+        <div class="card"><p class="lab" style="margin-bottom:12px">Usually busy · Saturday</p>
+          <div class="bars"><i style="height:30%"></i><i style="height:52%"></i><i style="height:82%"></i><i style="height:100%"></i><i class="on" style="height:64%"></i><i style="height:48%"></i><i style="height:40%"></i><i style="height:56%"></i></div>
+          <div class="row sm" style="margin-top:6px"><span>9</span><span>11</span><span>1</span><span>3</span><span>5</span></div></div>
+        <div class="card row"><div><p class="strong">Hours today</p><p class="sm">9am – 5pm</p></div><span class="btn ghost">Directions</span></div>
+        <p class="sm">Set by the team at the counter with one tap, so it's always a person's honest read of the room.</p>
+      </div>
+      <nav class="tabs"><span class="on"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg>Home</span><span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Events</span><span><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg>Shop</span><span><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/></svg>Play</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Rewards</span></nav>
+    </div></div><figcaption><b>Crowd meter</b>Four levels with a wait estimate, plus the usual busy hours so people can plan their visit.</figcaption></figure>
+
+    <!-- MENU -->
+    <figure class="fx"><div class="phone"><div class="scr oat">
+      <div class="sb"><span>9:41</span><span>●●●</span></div>
+      <div class="ab"><span class="strong">Menu</span><span class="pts"><i></i>1,240 pts</span></div>
+      <div class="pg" style="gap:0">
+        <div class="chips" style="margin-bottom:10px"><span class="chip on">Signature</span><span class="chip">Specials</span><span class="chip">Coffee</span><span class="chip">Matcha</span></div>
+        <div class="mi"><div class="img"><img src="../stagger/images/drinks/signature-double-matcha-420.webp" alt=""></div><div><b>Double Matcha</b><p>Ceremonial matcha, house-made vanilla, matcha cream</p></div><span>$7.75</span></div>
+        <div class="mi"><div class="img"><img src="../stagger/images/drinks/signature-cream-top-387.webp" alt=""></div><div><b>Cream Top</b><p>Iced americano, vanilla cream, cacao</p></div><span>$6.75</span></div>
+        <div class="mi"><div class="img"><img src="../stagger/images/drinks/signature-strawberry-matcha-367.webp" alt=""></div><div><b>Strawberry Matcha</b><p>Ceremonial matcha, house-made strawberry, milk</p></div><span>$8.00</span></div>
+        <div class="mi"><div class="img"><img src="../stagger/images/drinks/signature-stagger-tonic-192.webp" alt=""></div><div><b>Stagger Tonic</b><p>Double espresso, tonic water, orange syrup</p></div><span>$7.00</span></div>
+        <div class="mi" style="border:0"><div class="img"><img src="../stagger/images/drinks/signature-donut-latte-607.webp" alt=""></div><div><b>Donut Latte</b><p>Double espresso, steamed milk, vanilla, cacao</p></div><span>$7.00</span></div>
+      </div>
+      <nav class="tabs"><span class="on"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg>Home</span><span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Events</span><span><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg>Shop</span><span><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/></svg>Play</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Rewards</span></nav>
+    </div></div><figcaption><b>Menu &amp; special drinks</b>Browse only. The specials chip is where a limited drink gets its moment.</figcaption></figure>
+
+    <!-- EVENTS -->
+    <figure class="fx"><div class="phone"><div class="scr">
+      <div class="sb"><span>9:41</span><span>●●●</span></div>
+      <div class="ab"><span class="strong">Events</span><span class="pts"><i></i>1,240 pts</span></div>
+      <div class="pg">
+        <div class="chips"><span class="chip on">All</span><span class="chip">Workshops</span><span class="chip">Live</span><span class="chip">Pop-ups</span></div>
+        <div class="hero-c" style="height:118px"><img src="../stagger/images/people/journaling-with-matcha-sunlit-table-1200.webp" alt="" style="object-position:30% 50%"><div><span class="tag">Sample event</span><b>Matcha whisking workshop</b></div></div>
+        <div class="card ev"><div class="dt"><small>Sat</small>14</div><div><p class="strong">Latte art night</p><p class="sm">6–8pm · sample</p></div><span class="btn ghost" style="min-height:34px;padding:0 12px">Remind</span></div>
+        <div class="card ev"><div class="dt"><small>Sun</small>22</div><div><p class="strong">Local makers pop-up</p><p class="sm">11am–3pm · sample</p></div><span class="btn ghost" style="min-height:34px;padding:0 12px">Remind</span></div>
+        <div class="card ev"><div class="dt"><small>Fri</small>27</div><div><p class="strong">New drink launch</p><p class="sm">All day · sample</p></div><span class="btn ghost" style="min-height:34px;padding:0 12px">Remind</span></div>
+        <div class="spon">Event sponsor slot</div>
+      </div>
+      <nav class="tabs"><span><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg>Home</span><span class="on"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Events</span><span><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg>Shop</span><span><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/></svg>Play</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Rewards</span></nav>
+    </div></div><figcaption><b>Events</b>Reminders, add to calendar, and an optional sponsor line on each event.</figcaption></figure>
+
+    <!-- SHOP -->
+    <figure class="fx"><div class="phone"><div class="scr dark">
+      <div class="sb"><span>9:41</span><span>●●●</span></div>
+      <div class="ab"><img src="../stagger/images/brand/stagger-logo.png" alt="Stagger"><span class="pts"><i></i>1,240 pts</span></div>
+      <div class="pg">
+        <h3 class="h">The <span class="serif">shop.</span></h3>
+        <div class="chips"><span class="chip on">All</span><span class="chip">Coffee</span><span class="chip">Matcha</span><span class="chip">Wear</span><span class="chip">Bags</span></div>
+        <div class="grid2">
+          <div class="pc"><div class="img"><img src="../stagger/images/matcha/organic-ceremonial-matcha-tin-1-1000.webp" alt=""></div><b>Ceremonial Matcha 30g</b><span>$35.00</span><em>or 3,500 pts</em></div>
+          <div class="pc"><div class="img"><img src="../stagger/images/coffee/coffee-bean-bag-1-900.webp" alt=""></div><b>STAGGER Coffee Bean</b><span>$20.00</span><em>or 2,000 pts</em></div>
+          <div class="pc"><div class="img"><img src="../stagger/images/products/tshirt-1-1000.webp" alt=""></div><b>STAGGER T-Shirt</b><span>$35.00</span><em>or 3,500 pts</em></div>
+          <div class="pc"><div class="img"><img src="../stagger/images/products/premium-tote-bag-1-1000.webp" alt=""></div><b>Premium Tote Bag</b><span>$38.00</span><em>or 3,800 pts</em></div>
+        </div>
+      </div>
+      <nav class="tabs"><span><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg>Home</span><span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Events</span><span class="on"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg>Shop</span><span><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/></svg>Play</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Rewards</span></nav>
+    </div></div><figcaption><b>Shop</b>Real products and prices from the current store, each with its points price. Point values are placeholders.</figcaption></figure>
+
+    <!-- CHECKOUT -->
+    <figure class="fx"><div class="phone"><div class="scr dark">
+      <div class="sb"><span>9:41</span><span>●●●</span></div>
+      <div class="ab"><span class="strong">Your bag</span><span class="pts"><i></i>1,240 pts</span></div>
+      <div class="pg">
+        <div class="card row" style="background:#1a1b16;border-color:#2a2c24;padding:10px"><div class="img" style="width:54px;aspect-ratio:1"><img src="../stagger/images/coffee/coffee-bean-bag-1-900.webp" alt=""></div><div style="flex:1"><p class="strong">STAGGER Coffee Bean</p><p class="sm">Whole bean · Qty 1</p></div><span class="serif" style="font-size:20px">$20.00</span></div>
+        <div class="card row" style="background:#1a1b16;border-color:#2a2c24;padding:10px"><div class="img" style="width:54px;aspect-ratio:1"><img src="../stagger/images/products/tumbler-1-1000.webp" alt=""></div><div style="flex:1"><p class="strong">STAGGER Tumbler 12oz</p><p class="sm">Qty 1</p></div><span class="serif" style="font-size:20px">$36.00</span></div>
+        <div class="card" style="background:#1a1b16;border-color:#2a2c24"><div class="row"><span class="strong">Use points</span><span class="tag">On</span></div>
+          <div class="bar" style="margin:10px 0 6px"><i style="width:100%"></i></div><p class="sm">1,240 pts = $12.40 off (sample rate)</p></div>
+        <div class="card" style="background:#1a1b16;border-color:#2a2c24"><div class="row sm"><span>Subtotal</span><span>$56.00</span></div><div class="row sm" style="margin-top:6px"><span>Points</span><span>−$12.40</span></div><div class="row sm" style="margin-top:6px"><span>Shipping &amp; tax</span><span>next step</span></div><div class="row" style="margin-top:12px"><span class="strong">Total</span><span class="serif" style="font-size:26px">$43.60</span></div></div>
+        <span class="btn m" style="min-height:50px">Pay with Apple Pay</span>
+      </div>
+      <nav class="tabs"><span><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg>Home</span><span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Events</span><span class="on"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg>Shop</span><span><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/></svg>Play</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Rewards</span></nav>
+    </div></div><figcaption><b>Bag &amp; checkout</b>Points and cash in the same checkout. Any card or wallet the payment provider supports.</figcaption></figure>
+
+    <!-- PLAY -->
+    <figure class="fx"><div class="phone"><div class="scr dark">
+      <div class="sb"><span>9:41</span><span>●●●</span></div>
+      <div class="ab"><span class="strong">Play</span><span class="pts"><i></i>1,240 pts</span></div>
+      <div class="pg">
+        <div class="card" style="background:#1a1b16;border-color:#2a2c24"><div class="row"><div><p class="lab" style="color:var(--matcha)">Daily game</p><p class="strong" style="font-size:22px;margin-top:4px">Balance the Ice</p></div><span class="tag">+10 pts</span></div>
+          <div class="glass"><i style="left:14px;bottom:10px;transform:rotate(-8deg)"></i><i style="left:58px;bottom:46px;transform:rotate(9deg)"></i><i style="left:30px;bottom:82px;transform:rotate(-4deg)"></i></div>
+          <div class="gauge" style="margin:22px 0 8px"><i></i></div><p class="sm" style="text-align:center">Tap to stack, keep the glass level</p></div>
+        <div class="card row" style="background:#1a1b16;border-color:#2a2c24"><div><p class="strong">Whisk Rush</p><p class="sm">Tap the rhythm · best 42</p></div><span class="btn m" style="min-height:36px">Play</span></div>
+        <div class="card row" style="background:#1a1b16;border-color:#2a2c24"><div><p class="strong">Guess the drink</p><p class="sm">Daily quiz · 3-day streak</p></div><span class="btn m" style="min-height:36px">Play</span></div>
+        <p class="sm">Capped at a few points a day, so it's a treat, not a chore.</p>
+      </div>
+      <nav class="tabs"><span><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg>Home</span><span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Events</span><span><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg>Shop</span><span class="on"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/></svg>Play</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Rewards</span></nav>
+    </div></div><figcaption><b>Play</b>Games built around the brand's idea, balancing the unbalanced, for a few points a day.</figcaption></figure>
+
+    <!-- REWARDS -->
+    <figure class="fx"><div class="phone"><div class="scr">
+      <div class="sb"><span>9:41</span><span>●●●</span></div>
+      <div class="ab"><span class="strong">Rewards</span><span class="pts"><i></i>1,240 pts</span></div>
+      <div class="pg">
+        <div class="card fill"><p class="lab">Your points</p><p class="big" style="margin:6px 0 10px">1,240</p><div class="bar"><i style="width:62%"></i></div><p class="sm" style="margin-top:8px">760 pts to a free drink (sample)</p></div>
+        <div class="qr"><svg viewBox="0 0 21 21" shape-rendering="crispEdges" fill="#1C1B18"><path d="M0 0h7v7H0zM14 0h7v7h-7zM0 14h7v7H0z"/><path fill="#fff" d="M1 1h5v5H1zM15 1h5v5h-5zM1 15h5v5H1z"/><path d="M2 2h3v3H2zM16 2h3v3h-3zM2 16h3v3H2zM9 1h2v2H9zM8 4h2v2H8zM11 5h2v2h-2zM9 8h3v2H9zM13 8h2v2h-2zM16 9h3v2h-3zM8 11h2v2H8zM11 12h3v2h-3zM15 12h2v2h-2zM18 13h2v2h-2zM9 15h2v2H9zM12 16h2v3h-2zM15 15h3v2h-3zM9 18h2v2H9zM17 18h3v2h-3z"/></svg></div>
+        <p class="sm" style="text-align:center;margin-top:-4px">Show at the counter to earn points</p>
+        <ul class="hist"><li><span>Coffee visit</span><b>+25</b></li><li><span>Balance the Ice</span><b>+10</b></li><li><span>Event check-in</span><b>+50</b></li></ul>
+      </div>
+      <nav class="tabs"><span><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg>Home</span><span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Events</span><span><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg>Shop</span><span><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/></svg>Play</span><span class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Rewards</span></nav>
+    </div></div><figcaption><b>Rewards</b>A code the cashier scans to add points to the same account the store uses. Illustrative code, not a working one.</figcaption></figure>
+
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="lab">03 — Roadmap</p>
+  <h2 class="disp">Four stages, <span class="serif">each shippable.</span></h2>
+  <p class="lead">Each stage ends with something the café can use, so the app is useful early and grows. Durations are rough planning estimates that assume the content, prices and rules are confirmed up front, and will be firmed up once we start.</p>
+  <div class="road">
+    <div class="ph"><h3>Foundation</h3><p class="wk">Weeks 1–2 · Setup</p><ul>
+      <li>Confirm hours, menu, prices and brand files</li><li>Decide points rules with their accountant</li><li>Pick tools: payments, shipping, content editor</li><li>Final designs for all eight screens</li></ul>
+      <p class="out"><b>You get:</b> signed-off designs and a fixed scope.</p></div>
+    <div class="ph"><h3>Front door</h3><p class="wk">Weeks 3–8 · v1</p><ul>
+      <li>Home, hours and directions</li><li>Crowd meter (one tap for the team)</li><li>Menu &amp; special drinks</li><li>Events with reminders, blog</li><li>Simple editor so staff update content themselves</li></ul>
+      <p class="out"><b>You get:</b> an app on iPhone and Android that keeps regulars informed.</p></div>
+    <div class="ph"><h3>Regulars</h3><p class="wk">Weeks 9–14 · v2</p><ul>
+      <li>Accounts and sign-in</li><li>Points: scan at the counter to earn</li><li>Push notifications for events and specials</li><li>Cashier scanning tool</li></ul>
+      <p class="out"><b>You get:</b> a loyalty programme that works at the register.</p></div>
+    <div class="ph"><h3>Shop &amp; play</h3><p class="wk">Weeks 15–22 · v3</p><ul>
+      <li>Store: coffee, matcha, clothing, bags</li><li>Checkout with cards, wallets and points</li><li>Shipping, taxes and order tracking</li><li>Games and sponsor placements</li></ul>
+      <p class="out"><b>You get:</b> the full app, with the store running inside it.</p></div>
+  </div>
+
+  <div class="cols">
+    <div><h3>How the crowd meter works</h3><ul>
+      <li><b>Start simple.</b> A barista taps Quiet, Steady, Busy or Packed on a phone or tablet.</li>
+      <li><b>Wait time</b> is a range tied to each level, agreed with the team.</li>
+      <li><b>Later.</b> It can be suggested automatically from register activity or a door counter, if they want that.</li></ul></div>
+    <div><h3>Points, kept simple</h3><ul>
+      <li><b>Earn:</b> visits (scan at the counter), events, a few points from games each day.</li>
+      <li><b>Spend:</b> store items, and free drinks at the counter.</li>
+      <li><b>Start as rewards, not cash.</b> Points that act like stored money can bring gift-card rules in California, so their accountant should confirm before launch.</li></ul></div>
+    <div><h3>What we need from Stagger</h3><ul>
+      <li>Final hours (our sources still disagree) and the full menu</li>
+      <li>What runs at the counter today, and whether it can scan codes</li>
+      <li>Who updates events, blog and specials day to day</li>
+      <li>Shipping rules: where, how fast, returns</li>
+      <li>Partners or sponsors they'd like to feature</li></ul></div>
+  </div>
+
+  <p class="lab" style="margin-top:56px">Ideas for after launch</p>
+  <div class="ideas"><span>Tip the team in the app</span><span>Gift cards</span><span>Referral rewards</span><span>Apple &amp; Google Wallet pass</span><span>Limited drops with a waitlist</span><span>Staff picks</span><span>Neighbourhood partner perks</span><span>Customer photo wall</span></div>
+</div></section>
+
+<footer><div class="wrap">Concept for discussion. Prices and product names are from the current Stagger website; events, articles, point values, wait times and partner slots are sample content. Timings are estimates.</div></footer>
+</body>
+</html>
